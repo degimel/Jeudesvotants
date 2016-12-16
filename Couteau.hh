@@ -8,5 +8,4 @@ class Couteau : public Projectile{
 		~Couteau(){};
 		void DrawThemself(Screen S) const;
 		bool verifieImpact() const{ return 0;};
-		void update(){ _ordonnee++;};
 };

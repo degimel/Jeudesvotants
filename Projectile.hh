@@ -9,4 +9,5 @@ class Projectile : public Figure{
 		virtual ~Projectile(){};
 		virtual void DrawThemself(Screen S) const=0;
 		virtual bool verifieImpact() const=0;
+		void update(){ _ordonnee++;};
 };

@@ -15,6 +15,6 @@ class Joueur{
 		static int numeroJoueur;
 		int _abcisse;
 		std::vector<Electeur> listVotants;
-		int nbre_votants_arrives;
-		int nbre_adversaires_arrives;
+		//int nbre_votants_arrives;
+		//int nbre_adversaires_arrives;
 };

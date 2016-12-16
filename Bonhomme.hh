@@ -9,5 +9,5 @@ class Bonhomme : public Figure{
 		~Bonhomme(){};
 		void DrawThemself(Screen S) const;
 		bool verifieImpact() const{ return 0;};
-		int getAbcisse() const{ return _abcisse; }
+		int &getAbcisse(){ return _abcisse; };
 };

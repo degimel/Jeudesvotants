@@ -2,6 +2,7 @@
 #include <iostream>
 #include <vector>
 #include "screen.hh"
+
 class Figure{
 	protected :
 		int _abcisse;
