@@ -23,13 +23,19 @@ void Simu::initialise(){
 
 void Simu::supprimer_bonhomme1(){
 	for(auto it1=_listProjectiles.begin();it1!=_listProjectiles.end();++it1){
+		if((*it1)->getposition().y>800){
+			_listProjectiles.erase(it1);
+			this->supprimer_bonhomme1();
+			return ;	
+		}
 		for(auto it2=_listElecteur2.begin();it2!=_listElecteur2.end();++it2){
 			if((*it1)->verifieImpact(&(*it2))){
 				_listElecteur2.erase(it2);
 				_listProjectiles.erase(it1);
 				this->supprimer_bonhomme1();
 				return ;				
-			}			
+			}
+						
 		}	
 	}
 
@@ -37,6 +43,11 @@ void Simu::supprimer_bonhomme1(){
 
 void Simu::supprimer_bonhomme2(){
 	for(auto it1=_listProjectiles.begin();it1!=_listProjectiles.end();++it1){
+		if((*it1)->getposition().y>800){
+			_listProjectiles.erase(it1);
+			this->supprimer_bonhomme2();
+			return ;	
+		}			
 		for(auto it2=_listElecteur1.begin();it2!=_listElecteur1.end();++it2){
 			if((*it1)->verifieImpact(&(*it2))){
 				_listElecteur1.erase(it2);
@@ -44,7 +55,8 @@ void Simu::supprimer_bonhomme2(){
 				_listProjectiles.erase(it1);
 				this->supprimer_bonhomme2();
 				return ;				
-			}			
+			}
+						
 		}	
 	}
 
