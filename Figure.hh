@@ -5,10 +5,11 @@
 
 class Figure{
 	protected :
-		int _abcisse;
+		SDL_Rect position;
 	public :
-		Figure(int abcisse): _abcisse(abcisse) {};
+		Figure(int abcisse, int ordonnee){position.x=abcisse; position.y=ordonnee;};
 		virtual ~Figure(){};
-		virtual void DrawThemself(Screen S) const=0;
-		virtual bool verifieImpact() const=0;
+		SDL_Rect getposition(){ return position;};
+
+		
 };

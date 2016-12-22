@@ -1,13 +1,16 @@
 #pragma once
 #include "Figure.hh"
-
+//#include "Electeur.hh"
+class Electeur;
 class Projectile : public Figure{
 	protected :
-		int _ordonnee;
+
+		
 	public :
-		Projectile(int abcisse, int ordonnee) : Figure(abcisse),_ordonnee(ordonnee){};
+		Projectile(int abcisse, int ordonnee) : Figure(abcisse,ordonnee){};
 		virtual ~Projectile(){};
-		virtual void DrawThemself(Screen S) const=0;
-		virtual bool verifieImpact() const=0;
-		void update(){ _ordonnee++;};
+		virtual bool verifieImpact(Electeur* electeur) const=0;
+		SDL_Rect& update(){ position.y+=10; return position;};
+		int gety(){ return position.y;};
+		int getx(){ return position.x;};
 };

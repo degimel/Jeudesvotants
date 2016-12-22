@@ -3,64 +3,47 @@
 #include "Joueur.hh"
 #include "Electeur.hh"
 #include "screen.hh"
+#include "Simu.hh"
 
+using namespace std;
 int main()
 {
-	SDL_Surface *ecran = NULL, *zozor = NULL, *helico=NULL;
-    SDL_Rect positionZozor;
+	SDL_Surface *ecran = NULL, *zozor = NULL, *helico=NULL, *couteau=NULL, *votant1=NULL, *votant2=NULL;
 	SDL_Rect positionHelico;
     SDL_Event event;
     int continuer = 1;
     SDL_Init(SDL_INIT_VIDEO);
-    ecran = SDL_SetVideoMode(700, 800, 32, SDL_HWSURFACE | SDL_DOUBLEBUF); /* Double Buffering */
-    SDL_WM_SetCaption("Gestion des évènements en SDL", NULL);
-    
-	zozor = SDL_LoadBMP("bonhomme.bmp");
+    ecran = SDL_SetVideoMode(700, 800, 16, SDL_HWSURFACE /*| SDL_DOUBLEBUF*/); /* Double Buffering */
+    SDL_WM_SetCaption("JEU", NULL);
+
 	helico= SDL_LoadBMP("helico.bmp");
-    SDL_SetColorKey(zozor, SDL_SRCCOLORKEY, SDL_MapRGB(zozor->format, 0, 0, 255));
-
-    positionZozor.x = 0;
-    positionZozor.y = ecran->h / 2 - zozor->h / 2;
-
+	couteau=SDL_LoadBMP("couteau.bmp");
+	votant1=SDL_LoadBMP("bonhomme.bmp");
+	votant2=SDL_LoadBMP("bonhomme2.bmp");
+	
+	
+	Simu S(3000);
+	
 	positionHelico.x= 100;
-	positionHelico.y=5;	
-    SDL_EnableKeyRepeat(10, 10); /* Activation de la répétition des touches */
-    while (continuer)
-    {
-        SDL_PollEvent(&event);
-        switch(event.type)
-        {
-            case SDL_QUIT:
-                continuer = 0;
-                break;
-            case SDL_KEYDOWN:
-                switch(event.key.keysym.sym)
-                {
-//						case SDLK_UP:
-//                      positionZozor.y--;
-//                      break;
-//                    case SDLK_DOWN:
-//                       positionZozor.y++;
-//                        break;
-                    case SDLK_RIGHT:
-                        positionHelico.x++;
-                        break;
-                    case SDLK_LEFT:
-                        positionHelico.x--;
-                        break;
-					default : 
-						break;
-                }
-                break;
-        }
-		positionZozor.x++;
-        SDL_FillRect(ecran, NULL, SDL_MapRGB(ecran->format, 255, 255, 255));
-        SDL_BlitSurface(zozor, NULL, ecran, &positionZozor);
-		SDL_BlitSurface(helico, NULL, ecran, &positionHelico);
-        SDL_Flip(ecran);
+	positionHelico.y=1;	
+
+	S.initialise();
+	int tpsCourant=0;
+    while (continuer && tpsCourant<S.get_tpsSimulation()+100)
+	{
+		
+        	tpsCourant=S.run(ecran,helico,couteau,votant1, votant2,positionHelico, event, continuer);
+		
     }
+	if(S.getcpt1()>S.getcpt2()){
+		cout<<"***********************"<< endl <<"BRAVO ! Vous avez gagné à "<< S.getcpt1() << "contre " << S.getcpt2() <<endl; 	
+	}else{
+		cout<<"***********************"<< endl <<"Perdu ! :(  vous avez eu" << S.getcpt1() << "voix contre " << S.getcpt2() << endl;
+	}
+		
     SDL_FreeSurface(zozor);
     SDL_Quit();
+	
     return EXIT_SUCCESS;
 }
 

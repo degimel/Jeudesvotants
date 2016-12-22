@@ -2,10 +2,11 @@
 
 using namespace std;
 
-void Couteau::DrawThemself(Screen S) const{
-	while(1){
-		S.line(_abcisse,_ordonnee,_abcisse,_ordonnee+5);
-//Il faut mettre à jour le couteau et incrémenter son ordonnée à chaque pas de temps
-		S.flip();
+bool Couteau::verifieImpact(Electeur* electeur) const{
+	if(position.y>400){
+		if(electeur->getposition().x>position.x-2 && electeur->getposition().x<position.x+2){ //precision + ou - 10
+			return true;
+		}
 	}
-}	
+	return false;
+}

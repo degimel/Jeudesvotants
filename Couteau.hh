@@ -1,11 +1,11 @@
 #pragma once
 #include "Projectile.hh"
+#include "Electeur.hh"
 
 class Couteau : public Projectile{
 
 	public :
 		Couteau(int abcisse, int ordonnee):Projectile(abcisse,ordonnee){};
 		~Couteau(){};
-		void DrawThemself(Screen S) const;
-		bool verifieImpact() const{ return 0;};
+		bool verifieImpact(Electeur* electeur) const;
 };
