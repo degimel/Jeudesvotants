@@ -32,6 +32,7 @@ void Simu::supprimer_bonhomme1(){
 			if((*it1)->verifieImpact(&(*it2))){
 				_listElecteur2.erase(it2);
 				_listProjectiles.erase(it1);
+				//delete (*it1);  //Erreur de segmentation avec
 				this->supprimer_bonhomme1();
 				return ;				
 			}
@@ -51,7 +52,7 @@ void Simu::supprimer_bonhomme2(){
 		for(auto it2=_listElecteur1.begin();it2!=_listElecteur1.end();++it2){
 			if((*it1)->verifieImpact(&(*it2))){
 				_listElecteur1.erase(it2);
-				
+				//delete (*it1); //Erreur de segmentation avec
 				_listProjectiles.erase(it1);
 				this->supprimer_bonhomme2();
 				return ;				
