@@ -8,7 +8,7 @@
 using namespace std;
 int main()
 {
-	SDL_Surface *ecran = NULL, *zozor = NULL, *helico=NULL, *couteau=NULL, *votant1=NULL, *votant2=NULL;
+	SDL_Surface *ecran = NULL, *zozor = NULL, *helico=NULL, *couteau=NULL, *votant1=NULL, *votant2=NULL, *bombe=NULL;
 	SDL_Rect positionHelico;
     SDL_Event event;
     int continuer = 1;
@@ -20,6 +20,7 @@ int main()
 	couteau=SDL_LoadBMP("couteau.bmp");
 	votant1=SDL_LoadBMP("bonhomme.bmp");
 	votant2=SDL_LoadBMP("bonhomme2.bmp");
+	bombe=SDL_LoadBMP("zozore.bmp");
 	
 	
 	Simu S(3000);
@@ -32,7 +33,7 @@ int main()
     while (continuer && tpsCourant<S.get_tpsSimulation()+100)
 	{
 		
-        	tpsCourant=S.run(ecran,helico,couteau,votant1, votant2,positionHelico, event, continuer);
+        	tpsCourant=S.run(ecran,helico,couteau,votant1, votant2,positionHelico, event, continuer,bombe);
 		
     }
 	if(S.getcpt1()>S.getcpt2()){

@@ -1,5 +1,11 @@
 #include "Simu.hh"
+/* DES SURCHARGES D'OPERATEUR PEUVENT ETRE FAITES POUR SAVOIR SI UN PROJECTILE EST UN COUTEAU OU UNE BOMBE ( == ) ; VOIR LIGNE 108*/
+/* ON EN EST A GERER LES BOMBES*/
 
+
+
+/*IL FAUDRA S'OCCUPER DES DELETE*/
+/*IL FAUDRA AJUSTER LES PRECISIONS*/
 
 
 
@@ -64,7 +70,7 @@ void Simu::supprimer_bonhomme2(){
 }
 
 
-int Simu::run(SDL_Surface* ecran,SDL_Surface *helico,SDL_Surface *couteau,SDL_Surface *votant1,SDL_Surface *votant2,SDL_Rect& positionHelico, SDL_Event& event, int &continuer){
+int Simu::run(SDL_Surface* ecran,SDL_Surface *helico,SDL_Surface *couteau,SDL_Surface *votant1,SDL_Surface *votant2,SDL_Rect& positionHelico, SDL_Event& event, int &continuer,SDL_Surface *bombe){
 		//Commande joueur
 		
 		
@@ -81,24 +87,24 @@ int Simu::run(SDL_Surface* ecran,SDL_Surface *helico,SDL_Surface *couteau,SDL_Su
 						continuer=0;
 						break;
 					case SDLK_UP:{
-                      Bombe bombe(positionHelico.x,0);					 
-					_listProjectiles.push_back(&bombe);}
-
-                      break;
-                    case SDLK_DOWN:{
-					Couteau* couteau=new Couteau(positionHelico.x,0);
-					 _listProjectiles.push_back(couteau);
-					}
-                        break;
-                    case SDLK_RIGHT:
-                        positionHelico.x+=10;
-                        break;
-                    case SDLK_LEFT:
-                        positionHelico.x-=10;
-                        break;
-					default : 
-						break;
-                }
+                      Bombe* bombe=new Bombe(positionHelico.x,0);					 
+					_listProjectiles.push_back(bombe);
+				}
+                break;
+            case SDLK_DOWN:{
+				Couteau* couteau=new Couteau(positionHelico.x,0);
+				 _listProjectiles.push_back(couteau);
+				}
+                break;
+            case SDLK_RIGHT:
+                positionHelico.x+=10;
+                break;
+            case SDLK_LEFT:
+                positionHelico.x-=10;
+                break;
+			default : 
+				break;
+            }
          }
 		
 		//mise à jour des projectiles
