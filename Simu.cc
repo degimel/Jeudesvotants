@@ -22,7 +22,7 @@ void Simu::initialise(){
 /*Bonhommes blancs*/
 void Simu::supprimer_bonhomme1(){
 	for(auto it1=_listProjectiles.begin();it1!=_listProjectiles.end();++it1){
-		if((*it1)->getposition().y>750){
+		if((*it1)->getposition().y>550){
 			Projectile* copieProjectile=(*it1);
 			_listProjectiles.erase(it1);
 			delete (copieProjectile);
@@ -47,7 +47,7 @@ void Simu::supprimer_bonhomme1(){
 /*Bonhommes noirs*/
 void Simu::supprimer_bonhomme2(){
 	for(auto it1=_listProjectiles.begin();it1!=_listProjectiles.end();++it1){
-		if((*it1)->getposition().y>750){
+		if((*it1)->getposition().y>550){
 			Projectile* copieProjectile=(*it1);
 			_listProjectiles.erase(it1);
 			delete (copieProjectile);

@@ -6,7 +6,7 @@
 
 class Electeur : public Figure{
 	public :
-		Electeur() : Figure(0,700){};
+		Electeur() : Figure(0,500){};
 		~Electeur(){};
 		SDL_Rect update(){position.x++; return position;};
 		void initialise_tpsDepart(int tps_Simu);

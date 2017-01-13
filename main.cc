@@ -13,7 +13,7 @@ int main()
     SDL_Event event;
     int continuer = 1;
     SDL_Init(SDL_INIT_VIDEO);
-    ecran = SDL_SetVideoMode(700, 800, 16, SDL_HWSURFACE);
+    ecran = SDL_SetVideoMode(700, 600, 16, SDL_HWSURFACE);
     SDL_WM_SetCaption("JEU", NULL);
 
 	/*Chargement des images*/
@@ -44,7 +44,7 @@ int main()
 		cout<<"***********************"<< endl <<"Perdu ! :'(  vous avez eu " << S.getcpt1() << " voix contre " << S.getcpt2() << endl << "Vous ne remportez pas les elections : vous n'avez pas tué assez d'opposants !" << endl;
 	}
 	else{
-		cout<<"***********************"<< endl <<"Il y a" << S.getcpt1() << " voix contre " << S.getcpt2() << endl << "Il y a donc égalité : une première dans les élections !!" << endl;
+		cout<<"***********************"<< endl <<"Il y a " << S.getcpt1() << " voix contre " << S.getcpt2() << endl << "Il y a donc égalité : une première dans les élections !!" << endl;
 	}
 		
     SDL_Quit();
