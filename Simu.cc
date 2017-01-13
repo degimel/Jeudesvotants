@@ -37,11 +37,9 @@ void Simu::supprimer_bonhomme1(){
 				delete (copieProjectile); 
 				this->supprimer_bonhomme1();
 				return ;				
-			}
-						
+			}					
 		}	
 	}
-
 }
 
 /*Bonhommes noirs*/
@@ -52,7 +50,7 @@ void Simu::supprimer_bonhomme2(){
 			_listProjectiles.erase(it1);
 			delete (copieProjectile);
 			this->supprimer_bonhomme2();
-			return ;	
+			return;	
 		}			
 		for(auto it2=_listElecteur1.begin();it2!=_listElecteur1.end();++it2){
 			if((*it1)->verifieImpact(&(*it2))){
@@ -61,12 +59,10 @@ void Simu::supprimer_bonhomme2(){
 				_listProjectiles.erase(it1);
 				delete (copieProjectile);
 				this->supprimer_bonhomme2();
-				return ;				
-			}
-						
+				return;				
+			}					
 		}	
 	}
-
 }
 
 
