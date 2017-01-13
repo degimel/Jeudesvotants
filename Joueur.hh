@@ -8,10 +8,7 @@ class Joueur{
 		Joueur(){};
 		~Joueur(){};	
 		std::vector<Electeur>&  getlistVotants(){ return listVotants;};
-
 	private :		
 		int _abcisse;
 		std::vector<Electeur> listVotants;
-		
-	
 };

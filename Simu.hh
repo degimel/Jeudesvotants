@@ -5,8 +5,8 @@
 #include "Couteau.hh"
 #include <list>
 #include <vector>
-#define NBTOTALVOTANT1 25
-#define NBTOTALVOTANT2 25
+#define NBTOTALVOTANT1 40
+#define NBTOTALVOTANT2 60
 class Simu{
 	private :
 		int _tpsCourant;

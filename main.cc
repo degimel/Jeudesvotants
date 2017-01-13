@@ -13,9 +13,10 @@ int main()
     SDL_Event event;
     int continuer = 1;
     SDL_Init(SDL_INIT_VIDEO);
-    ecran = SDL_SetVideoMode(700, 800, 16, SDL_HWSURFACE /*| SDL_DOUBLEBUF*/); /* Double Buffering */
+    ecran = SDL_SetVideoMode(700, 800, 16, SDL_HWSURFACE);
     SDL_WM_SetCaption("JEU", NULL);
 
+	/*Chargement des images*/
 	helico= SDL_LoadBMP("helico.bmp");
 	couteau=SDL_LoadBMP("couteau.bmp");
 	votant1=SDL_LoadBMP("bonhomme.bmp");
@@ -30,6 +31,7 @@ int main()
 
 	S.initialise();
 	int tpsCourant=0;
+	std::cout << "Début du jeu : vous 0-0 adversaire"<< std::endl; 
     while (continuer && tpsCourant<S.get_tpsSimulation()+100)
 	{
 		
@@ -37,9 +39,9 @@ int main()
 		
     }
 	if(S.getcpt1()>S.getcpt2()){
-		cout<<"***********************"<< endl <<"BRAVO ! Vous avez gagné à "<< S.getcpt1() << " contre " << S.getcpt2() << " !!" << endl << "Vous remportez les elections : vous avez tué assez d'opposants" << endl; 	
+		cout<<"***********************"<< endl <<"BRAVO ! Vous avez gagné à "<< S.getcpt1() << " contre " << S.getcpt2() << " !!" << endl << "Vous remportez les elections : vous avez tué assez d'opposants !!!" << endl; 	
 	}else if(S.getcpt1()<S.getcpt2()){
-		cout<<"***********************"<< endl <<"Perdu ! :'(  vous avez eu" << S.getcpt1() << " voix contre " << S.getcpt2() << endl << "Vous ne remportez pas les elections : vous n'avez pas tué assez d'opposants" << endl;
+		cout<<"***********************"<< endl <<"Perdu ! :'(  vous avez eu " << S.getcpt1() << " voix contre " << S.getcpt2() << endl << "Vous ne remportez pas les elections : vous n'avez pas tué assez d'opposants !" << endl;
 	}
 	else{
 		cout<<"***********************"<< endl <<"Il y a" << S.getcpt1() << " voix contre " << S.getcpt2() << endl << "Il y a donc égalité : une première dans les élections !!" << endl;

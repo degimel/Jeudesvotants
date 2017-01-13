@@ -1,12 +1,4 @@
 #include "Simu.hh"
-/* DES SURCHARGES D'OPERATEUR PEUVENT ETRE FAITES POUR SAVOIR SI UN PROJECTILE EST UN COUTEAU OU UNE BOMBE ( == ) ; VOIR LIGNE 108*/
-/* ON EN EST A GERER LES BOMBES*/
-
-
-
-/*IL FAUDRA S'OCCUPER DES DELETE*/
-/*IL FAUDRA AJUSTER LES PRECISIONS*/
-
 
 
 void Simu::initialise(){
@@ -27,7 +19,7 @@ void Simu::initialise(){
 		
 }
 
-/*Bonhommes blancs je crois - à vérifier*/
+/*Bonhommes blancs*/
 void Simu::supprimer_bonhomme1(){
 	for(auto it1=_listProjectiles.begin();it1!=_listProjectiles.end();++it1){
 		if((*it1)->getposition().y>750){
@@ -142,21 +134,23 @@ int Simu::run(SDL_Surface* ecran,SDL_Surface *helico,SDL_Surface *couteau,SDL_Su
 			}
 		}
 		
-		//verifier si certains sont arrivés : arrivée <=> abscisse=700
+		//verifier si certains sont arrivés : arrivée <=> abscisse=650
 		
 		for(auto it=_listElecteur1.begin(); it!=_listElecteur1.end();++it){
 			if(it->arrivee(650)){
 				_listElecteur1.erase(it); //retirer l'élement it de la liste
 				cpt_vote_pour_1++;
+				std::cout << "Score actuel : vous " << cpt_vote_pour_1 << "-" << cpt_vote_pour_2 << " adversaire"<< std::endl; 
 				break; //pour eviter le segmentation fault
 				
 			}
 		}
-		;
+		
 		for(auto it=_listElecteur2.begin(); it!=_listElecteur2.end();++it){	
 			if(it->arrivee(650)){
 				_listElecteur2.erase(it);
 				cpt_vote_pour_2++;
+				std::cout << "Score actuel : vous " << cpt_vote_pour_1 << "-" << cpt_vote_pour_2 << " adversaire"<< std::endl; 
 				break; //pour éviter le segmentation fault
 				
 			}
