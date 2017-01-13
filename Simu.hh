@@ -22,7 +22,8 @@ class Simu{
 		Simu(int tpsSimulation): _tpsSimulation(tpsSimulation){cpt_vote_pour_1=0; cpt_vote_pour_2=0;_tpsCourant=0;};
 		~Simu(){};
 		void initialise();
-		int run(SDL_Surface *ecran,SDL_Surface* helico,SDL_Surface *couteau,SDL_Surface *votant1,SDL_Surface *votant2,SDL_Rect& positionHelico,SDL_Event& event, int &continuer,SDL_Surface *bombe);
+		int run(SDL_Surface *ecran,SDL_Surface* helico,SDL_Surface *couteau,SDL_Surface *bombe,SDL_Surface *votant1,SDL_Surface *votant2,SDL_Rect& positionHelico,SDL_Event& event, int &continuer);
+		void gererEvenementsClavier(SDL_Event& event,int &continuer,SDL_Rect& positionHelico);
 		void supprimer_bonhomme1();
 		void supprimer_bonhomme2();
 		int getcpt1(){ return cpt_vote_pour_1;};

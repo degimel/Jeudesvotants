@@ -65,11 +65,7 @@ void Simu::supprimer_bonhomme2(){
 	}
 }
 
-
-int Simu::run(SDL_Surface* ecran,SDL_Surface *helico,SDL_Surface *couteau,SDL_Surface *votant1,SDL_Surface *votant2,SDL_Rect& positionHelico, SDL_Event& event, int &continuer,SDL_Surface *bombe){
-		//Commande joueur
-		
-		
+void Simu::gererEvenementsClavier(SDL_Event& event,int &continuer,SDL_Rect& positionHelico){
 		SDL_PollEvent(&event);
         switch(event.type)
         {
@@ -101,73 +97,78 @@ int Simu::run(SDL_Surface* ecran,SDL_Surface *helico,SDL_Surface *couteau,SDL_Su
 						break;
             	}
          }
-		
-		//mise à jour des projectiles
-		SDL_FillRect(ecran, NULL, SDL_MapRGB(ecran->format, 255, 255, 255));
-		SDL_BlitSurface(helico, NULL, ecran, &positionHelico);
+}
 
-		for(auto it=_listProjectiles.begin();it!=_listProjectiles.end();it++){
-			if(**it==1){ //si le projectile est un couteau
-				SDL_Rect rect=(*it)->update();
-				SDL_BlitSurface(couteau, NULL, ecran, &rect);
-			}
-			else if(**it==2){ //si le projectile est une bombe
-				SDL_Rect rect=(*it)->update();
-				SDL_BlitSurface(bombe, NULL, ecran, &rect);
-			}
-		}		
+int Simu::run(SDL_Surface* ecran,SDL_Surface *helico,SDL_Surface *couteau,SDL_Surface *bombe, SDL_Surface *votant1,SDL_Surface *votant2,SDL_Rect& positionHelico, SDL_Event& event, int &continuer){
+	/*On regarde si le joueur a appuyer sur des touches du clavier*/
+	gererEvenementsClavier(event, continuer, positionHelico);
 	
-		//verifier si certains rentrent
-		for(auto it=joueur1.getlistVotants().begin();it<joueur1.getlistVotants().end();it++){
-			if(it->get_tpsDepart()==_tpsCourant){
-				_listElecteur1.push_back(*it);
-				
-			}
+	//mise à jour des projectiles
+	SDL_FillRect(ecran, NULL, SDL_MapRGB(ecran->format, 255, 255, 255));
+	SDL_BlitSurface(helico, NULL, ecran, &positionHelico);
+
+	for(auto it=_listProjectiles.begin();it!=_listProjectiles.end();it++){
+		if(**it==1){ //si le projectile est un couteau
+			SDL_Rect rect=(*it)->update();
+			SDL_BlitSurface(couteau, NULL, ecran, &rect);
 		}
-		for(auto it=joueur2.getlistVotants().begin();it<joueur2.getlistVotants().end();it++){
-			if(it->get_tpsDepart()==_tpsCourant){
-				_listElecteur2.push_back(*it);
-			}
+		else if(**it==2){ //si le projectile est une bombe
+			SDL_Rect rect=(*it)->update();
+			SDL_BlitSurface(bombe, NULL, ecran, &rect);
 		}
-		
-		//verifier si certains sont arrivés : arrivée <=> abscisse=650
-		
-		for(auto it=_listElecteur1.begin(); it!=_listElecteur1.end();++it){
-			if(it->arrivee(650)){
-				_listElecteur1.erase(it); //retirer l'élement it de la liste
-				cpt_vote_pour_1++;
-				std::cout << "Score actuel : vous " << cpt_vote_pour_1 << "-" << cpt_vote_pour_2 << " adversaire"<< std::endl; 
-				break; //pour eviter le segmentation fault
-				
-			}
-		}
-		
-		for(auto it=_listElecteur2.begin(); it!=_listElecteur2.end();++it){	
-			if(it->arrivee(650)){
-				_listElecteur2.erase(it);
-				cpt_vote_pour_2++;
-				std::cout << "Score actuel : vous " << cpt_vote_pour_1 << "-" << cpt_vote_pour_2 << " adversaire"<< std::endl; 
-				break; //pour éviter le segmentation fault
-				
-			}
-		}		
-		//Mise à jour des electeurs
-										
-		for(auto it=_listElecteur1.begin(); it!=_listElecteur1.end();it++){
-			SDL_Rect rect=(*it).update();
-			SDL_BlitSurface(votant1, NULL, ecran, &rect);
+	}		
+
+	//verifier si certains rentrent
+	for(auto it=joueur1.getlistVotants().begin();it<joueur1.getlistVotants().end();it++){
+		if(it->get_tpsDepart()==_tpsCourant){
+			_listElecteur1.push_back(*it);
 			
 		}
-		for(auto it=_listElecteur2.begin(); it!=_listElecteur2.end();it++){
-			SDL_Rect rect=(*it).update();
-			SDL_BlitSurface(votant2, NULL, ecran, &rect);
+	}
+	for(auto it=joueur2.getlistVotants().begin();it<joueur2.getlistVotants().end();it++){
+		if(it->get_tpsDepart()==_tpsCourant){
+			_listElecteur2.push_back(*it);
 		}
-
-		//Verifier impacts
-		supprimer_bonhomme1();
-		supprimer_bonhomme2();
+	}
+	
+	//verifier si certains sont arrivés : arrivée <=> abscisse=650
+	
+	for(auto it=_listElecteur1.begin(); it!=_listElecteur1.end();++it){
+		if(it->arrivee(650)){
+			_listElecteur1.erase(it); //retirer l'élement it de la liste
+			cpt_vote_pour_1++;
+			std::cout << "Score actuel : vous " << cpt_vote_pour_1 << "-" << cpt_vote_pour_2 << " adversaire"<< std::endl; 
+			break; //pour eviter le segmentation fault
+			
+		}
+	}
+	
+	for(auto it=_listElecteur2.begin(); it!=_listElecteur2.end();++it){	
+		if(it->arrivee(650)){
+			_listElecteur2.erase(it);
+			cpt_vote_pour_2++;
+			std::cout << "Score actuel : vous " << cpt_vote_pour_1 << "-" << cpt_vote_pour_2 << " adversaire"<< std::endl; 
+			break; //pour éviter le segmentation fault
+			
+		}
+	}		
+	//Mise à jour des electeurs
+									
+	for(auto it=_listElecteur1.begin(); it!=_listElecteur1.end();it++){
+		SDL_Rect rect=(*it).update();
+		SDL_BlitSurface(votant1, NULL, ecran, &rect);
 		
-		SDL_Flip(ecran);
-		_tpsCourant++;
-		return _tpsCourant;
+	}
+	for(auto it=_listElecteur2.begin(); it!=_listElecteur2.end();it++){
+		SDL_Rect rect=(*it).update();
+		SDL_BlitSurface(votant2, NULL, ecran, &rect);
+	}
+
+	//Verifier impacts
+	supprimer_bonhomme1();
+	supprimer_bonhomme2();
+	
+	SDL_Flip(ecran);
+	_tpsCourant++;
+	return _tpsCourant;
 }

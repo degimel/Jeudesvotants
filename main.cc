@@ -14,7 +14,7 @@ int main()
     SDL_Event event;
     SDL_Init(SDL_INIT_VIDEO);
     ecran = SDL_SetVideoMode(700, 600, 16, SDL_HWSURFACE);
-    SDL_WM_SetCaption("JEU", NULL);
+    SDL_WM_SetCaption("JEU DES VOTANTS", NULL);
 
 	/*booléen qui va permettre de quitter une partie en cours en appuyant sur la touche echap*/
     int continuer = 1;
@@ -39,7 +39,7 @@ int main()
 	/*Tant que la simulation n'est pas finie, on met à jour l'interface graphique*/
     while (continuer && (tpsCourant<S.get_tpsSimulation() || S.getListElecteur1().size()!=0 || S.getListElecteur2().size()!=0))
 	{
-        	tpsCourant=S.run(ecran,helico,couteau,votant1, votant2,positionHelico, event, continuer,bombe);
+        	tpsCourant=S.run(ecran,helico,couteau,bombe,votant1, votant2,positionHelico, event, continuer);
     }
     
     /*Affichage des scores à la fin de la simulation*/
