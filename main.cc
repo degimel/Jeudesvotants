@@ -8,7 +8,7 @@
 using namespace std;
 int main()
 {
-	SDL_Surface *ecran = NULL, *zozor = NULL, *helico=NULL, *couteau=NULL, *votant1=NULL, *votant2=NULL, *bombe=NULL;
+	SDL_Surface *ecran = NULL, *helico=NULL, *couteau=NULL, *votant1=NULL, *votant2=NULL, *bombe=NULL;
 	SDL_Rect positionHelico;
     SDL_Event event;
     int continuer = 1;
@@ -20,7 +20,7 @@ int main()
 	couteau=SDL_LoadBMP("couteau.bmp");
 	votant1=SDL_LoadBMP("bonhomme.bmp");
 	votant2=SDL_LoadBMP("bonhomme2.bmp");
-	bombe=SDL_LoadBMP("zozore.bmp");
+	bombe=SDL_LoadBMP("bombe.bmp");
 	
 	
 	Simu S(3000);
@@ -37,12 +37,14 @@ int main()
 		
     }
 	if(S.getcpt1()>S.getcpt2()){
-		cout<<"***********************"<< endl <<"BRAVO ! Vous avez gagné à "<< S.getcpt1() << "contre " << S.getcpt2() <<endl; 	
-	}else{
-		cout<<"***********************"<< endl <<"Perdu ! :(  vous avez eu" << S.getcpt1() << "voix contre " << S.getcpt2() << endl;
+		cout<<"***********************"<< endl <<"BRAVO ! Vous avez gagné à "<< S.getcpt1() << " contre " << S.getcpt2() << " !!" << endl << "Vous remportez les elections : vous avez tué assez d'opposants" << endl; 	
+	}else if(S.getcpt1()<S.getcpt2()){
+		cout<<"***********************"<< endl <<"Perdu ! :'(  vous avez eu" << S.getcpt1() << " voix contre " << S.getcpt2() << endl << "Vous ne remportez pas les elections : vous n'avez pas tué assez d'opposants" << endl;
+	}
+	else{
+		cout<<"***********************"<< endl <<"Il y a" << S.getcpt1() << " voix contre " << S.getcpt2() << endl << "Il y a donc égalité : une première dans les élections !!" << endl;
 	}
 		
-    SDL_FreeSurface(zozor);
     SDL_Quit();
 	
     return EXIT_SUCCESS;
