@@ -99,11 +99,7 @@ void Simu::gererEvenementsClavier(SDL_Event& event,int &continuer,SDL_Rect& posi
          }
 }
 
-int Simu::run(SDL_Surface* ecran,SDL_Surface *helico,SDL_Surface *couteau,SDL_Surface *bombe, SDL_Surface *votant1,SDL_Surface *votant2,SDL_Rect& positionHelico, SDL_Event& event, int &continuer){
-	/*On regarde si le joueur a appuyer sur des touches du clavier*/
-	gererEvenementsClavier(event, continuer, positionHelico);
-	
-	//mise à jour des projectiles
+void Simu::MajAffichageProjectiles(SDL_Surface* ecran,SDL_Surface *helico,SDL_Surface *couteau,SDL_Surface *bombe,SDL_Rect& positionHelico){
 	SDL_FillRect(ecran, NULL, SDL_MapRGB(ecran->format, 255, 255, 255));
 	SDL_BlitSurface(helico, NULL, ecran, &positionHelico);
 
@@ -116,7 +112,16 @@ int Simu::run(SDL_Surface* ecran,SDL_Surface *helico,SDL_Surface *couteau,SDL_Su
 			SDL_Rect rect=(*it)->update();
 			SDL_BlitSurface(bombe, NULL, ecran, &rect);
 		}
-	}		
+	}
+	
+}
+
+int Simu::run(SDL_Surface* ecran,SDL_Surface *helico,SDL_Surface *couteau,SDL_Surface *bombe, SDL_Surface *votant1,SDL_Surface *votant2,SDL_Rect& positionHelico, SDL_Event& event, int &continuer){
+	/*On regarde si le joueur a appuyer sur des touches du clavier*/
+	gererEvenementsClavier(event, continuer, positionHelico);
+	
+	//mise à jour des projectiles
+	MajAffichageProjectiles(ecran,helico,couteau,bombe,positionHelico);		
 
 	//verifier si certains rentrent
 	for(auto it=joueur1.getlistVotants().begin();it<joueur1.getlistVotants().end();it++){
