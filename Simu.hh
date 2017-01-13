@@ -28,6 +28,8 @@ class Simu{
 		int getcpt2(){ return cpt_vote_pour_2;};
 		int get_tpsSimulation(){ return _tpsSimulation;};
 		int run(SDL_Surface *ecran,SDL_Surface* helico,SDL_Surface *couteau,SDL_Surface *votant1,SDL_Surface *votant2,SDL_Rect& positionHelico,SDL_Event& event, int &continuer,SDL_Surface *bombe);
+		std::vector<Electeur>& getListElecteur1(){return _listElecteur1;};
+		std::vector<Electeur>& getListElecteur2(){return _listElecteur2;};
 };		
 
 

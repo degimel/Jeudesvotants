@@ -11,7 +11,7 @@ int main()
 	SDL_Surface *ecran = NULL, *helico=NULL, *couteau=NULL, *votant1=NULL, *votant2=NULL, *bombe=NULL;
 	SDL_Rect positionHelico;
     SDL_Event event;
-    int continuer = 1;
+    int continuer = 1;//booléen qui va permettre de quitter une partie en cours en appuyant sur la touche echap
     SDL_Init(SDL_INIT_VIDEO);
     ecran = SDL_SetVideoMode(700, 600, 16, SDL_HWSURFACE);
     SDL_WM_SetCaption("JEU", NULL);
@@ -32,19 +32,25 @@ int main()
 	S.initialise();
 	int tpsCourant=0;
 	std::cout << "Début du jeu : vous 0-0 adversaire"<< std::endl; 
-    while (continuer && tpsCourant<S.get_tpsSimulation()+100)
+    while (continuer && (tpsCourant<S.get_tpsSimulation() || S.getListElecteur1().size()!=0 || S.getListElecteur2().size()!=0))
 	{
 		
         	tpsCourant=S.run(ecran,helico,couteau,votant1, votant2,positionHelico, event, continuer,bombe);
 		
     }
-	if(S.getcpt1()>S.getcpt2()){
-		cout<<"***********************"<< endl <<"BRAVO ! Vous avez gagné à "<< S.getcpt1() << " contre " << S.getcpt2() << " !!" << endl << "Vous remportez les elections : vous avez tué assez d'opposants !!!" << endl; 	
-	}else if(S.getcpt1()<S.getcpt2()){
-		cout<<"***********************"<< endl <<"Perdu ! :'(  vous avez eu " << S.getcpt1() << " voix contre " << S.getcpt2() << endl << "Vous ne remportez pas les elections : vous n'avez pas tué assez d'opposants !" << endl;
+    if(continuer){
+		if(S.getcpt1()>S.getcpt2()){
+			cout<<"***********************"<< endl <<"BRAVO ! Vous avez gagné à "<< S.getcpt1() << " contre " << S.getcpt2() << " !!" << endl << "Vous remportez les elections : vous avez tué assez d'opposants !!!" << endl; 	
+		}else if(S.getcpt1()<S.getcpt2()){
+			cout<<"***********************"<< endl <<"Perdu ! :'(  vous avez eu " << S.getcpt1() << " voix contre " << S.getcpt2() << endl << "Vous ne remportez pas les elections : vous n'avez pas tué assez d'opposants !" << endl;
+		}
+		else{
+			cout<<"***********************"<< endl <<"Il y a " << S.getcpt1() << " voix contre " << S.getcpt2() << endl << "Il y a donc égalité : une première dans les élections !!" << endl;
+		}
 	}
+	
 	else{
-		cout<<"***********************"<< endl <<"Il y a " << S.getcpt1() << " voix contre " << S.getcpt2() << endl << "Il y a donc égalité : une première dans les élections !!" << endl;
+		cout << "***********************"<< endl << "Vous avez abandonné la partie" << endl;
 	}
 		
     SDL_Quit();
