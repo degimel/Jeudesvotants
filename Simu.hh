@@ -28,7 +28,7 @@ class Simu{
 		void initialise();
 		int run(SDL_Surface *ecran,SDL_Surface* helico,SDL_Surface *couteau,SDL_Surface *bombe,SDL_Surface *votant1,SDL_Surface *votant2,SDL_Rect& positionHelico,SDL_Event& event, int &continuer);
 		void gererEvenementsClavier(SDL_Event& event,int &continuer,SDL_Rect& positionHelico);
-		void MajAffichageProjectiles(SDL_Surface* ecran,SDL_Surface *helico,SDL_Surface *couteau,SDL_Surface *bombe,SDL_Rect& positionHelico);
+		void MajAffichageProjectiles(SDL_Surface* ecran,SDL_Surface *couteau,SDL_Surface *bombe);
 		void checkEntrants();
 		void checkArrivees();
 		void MajAffichageElecteurs(SDL_Surface* ecran,SDL_Surface *votant1,SDL_Surface *votant2);

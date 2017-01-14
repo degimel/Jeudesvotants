@@ -9,7 +9,5 @@ class Figure{
 	public :
 		Figure(int abcisse, int ordonnee){position.x=abcisse; position.y=ordonnee;};
 		virtual ~Figure(){};
-		SDL_Rect getposition(){ return position;};
-
-		
+		SDL_Rect getposition(){ return position;};		
 };
