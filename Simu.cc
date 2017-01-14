@@ -21,7 +21,7 @@ void Simu::initialise(){
 }
 
 /*Cette fonction met à jour toute la simulation pour un pas de temps*/
-int Simu::run(SDL_Surface* ecran,SDL_Surface *helico,SDL_Surface *couteau,SDL_Surface *bombe, SDL_Surface *votant1,SDL_Surface *votant2,SDL_Rect& positionHelico, SDL_Event& event, int &continuer){
+int Simu::run(SDL_Surface* ecran,SDL_Surface *helico,SDL_Surface *couteau,SDL_Surface *bombe,SDL_Surface *MAIN4, SDL_Surface *votant1,SDL_Surface *votant2,SDL_Rect& positionHelico, SDL_Event& event, int &continuer){
 	/*On regarde si le joueur a appuyer sur des touches du clavier*/
 	gererEvenementsClavier(event, continuer, positionHelico);
 	
@@ -32,7 +32,7 @@ int Simu::run(SDL_Surface* ecran,SDL_Surface *helico,SDL_Surface *couteau,SDL_Su
 	SDL_BlitSurface(helico, NULL, ecran, &positionHelico);		
 	
 	/*Mise à jour del'affichage des projectiles*/
-	MajAffichageProjectiles(ecran,couteau,bombe);		
+	MajAffichageProjectiles(ecran,couteau,bombe,MAIN4);		
 
 	/*Vérifier si certains rentrent*/
 	checkEntrants();
@@ -64,6 +64,7 @@ int Simu::run(SDL_Surface* ecran,SDL_Surface *helico,SDL_Surface *couteau,SDL_Su
 	- échap : le jeu s'arrête
 	- flèche du haut : on lâche une bombe depuis l'hélicoptère
 	- flèche du bas : on jette un couteau depuis l'hélicoptère
+	- touche M : on jette une MAIN4 depuis l'hélicoptère
 	- flèches de droite et de gauche : on déplace l'hélicoptère*/
 void Simu::gererEvenementsClavier(SDL_Event& event,int &continuer,SDL_Rect& positionHelico){
 		SDL_PollEvent(&event);
@@ -87,6 +88,11 @@ void Simu::gererEvenementsClavier(SDL_Event& event,int &continuer,SDL_Rect& posi
 						 _listProjectiles.push_back(couteau);
 						}
 				        break;
+				    case SDLK_m:{
+				    	MAIN4* Main=new MAIN4(positionHelico.x,0);					 
+						_listProjectiles.push_back(Main);
+				    }
+				    break;
 				    case SDLK_RIGHT:
 				        positionHelico.x+=10;
 				        break;
@@ -100,7 +106,7 @@ void Simu::gererEvenementsClavier(SDL_Event& event,int &continuer,SDL_Rect& posi
 }
 
 /*Cette fonction met à jour les projectiles sur la fenêtre graphique*/
-void Simu::MajAffichageProjectiles(SDL_Surface* ecran,SDL_Surface *couteau,SDL_Surface *bombe){
+void Simu::MajAffichageProjectiles(SDL_Surface* ecran,SDL_Surface *couteau,SDL_Surface *bombe,SDL_Surface *MAIN4){
 	
 	for(auto it=_listProjectiles.begin();it!=_listProjectiles.end();it++){
 		/*si le projectile est un couteau*/
@@ -112,6 +118,11 @@ void Simu::MajAffichageProjectiles(SDL_Surface* ecran,SDL_Surface *couteau,SDL_S
 		else if(**it==2){ 
 			SDL_Rect rect=(*it)->update();
 			SDL_BlitSurface(bombe, NULL, ecran, &rect);
+		}
+		/*si le projectile est une MAIN4*/
+		else if(**it==3){ 
+			SDL_Rect rect=(*it)->update();
+			SDL_BlitSurface(MAIN4, NULL, ecran, &rect);
 		}
 	}
 }

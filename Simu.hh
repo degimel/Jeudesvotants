@@ -3,6 +3,7 @@
 #include "Joueur.hh"
 #include "Bombe.hh"
 #include "Couteau.hh"
+#include "MAIN4.hh"
 #include <list>
 #include <vector>
 
@@ -27,9 +28,9 @@ class Simu{
 		Simu(int tpsSimulation): _tpsSimulation(tpsSimulation){cpt_vote_pour_1=0; cpt_vote_pour_2=0;_tpsCourant=0;};
 		~Simu(){};
 		void initialise();
-		int run(SDL_Surface *ecran,SDL_Surface* helico,SDL_Surface *couteau,SDL_Surface *bombe,SDL_Surface *votant1,SDL_Surface *votant2,SDL_Rect& positionHelico,SDL_Event& event, int &continuer);
+		int run(SDL_Surface *ecran,SDL_Surface* helico,SDL_Surface *couteau,SDL_Surface *bombe,SDL_Surface *MAIN4,SDL_Surface *votant1,SDL_Surface *votant2,SDL_Rect& positionHelico,SDL_Event& event, int &continuer);
 		void gererEvenementsClavier(SDL_Event& event,int &continuer,SDL_Rect& positionHelico);
-		void MajAffichageProjectiles(SDL_Surface* ecran,SDL_Surface *couteau,SDL_Surface *bombe);
+		void MajAffichageProjectiles(SDL_Surface* ecran,SDL_Surface *couteau,SDL_Surface *bombe,SDL_Surface *MAIN4);
 		void checkEntrants();
 		void checkArrivees();
 		void MajAffichageElecteurs(SDL_Surface* ecran,SDL_Surface *votant1,SDL_Surface *votant2);

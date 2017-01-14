@@ -15,7 +15,7 @@ int main()
 	srand(time(NULL)); // initialisation de rand
 
 	/*Déclaration de l'écran et des images*/
-	SDL_Surface *ecran = NULL, *helico=NULL, *couteau=NULL, *votant1=NULL, *votant2=NULL, *bombe=NULL;
+	SDL_Surface *ecran = NULL, *helico=NULL, *couteau=NULL, *votant1=NULL, *votant2=NULL, *bombe=NULL, *MAIN4=NULL;
 	SDL_Rect positionHelico;
     SDL_Event event;
     SDL_Init(SDL_INIT_VIDEO);
@@ -31,6 +31,7 @@ int main()
 	votant1=SDL_LoadBMP("bonhomme.bmp");
 	votant2=SDL_LoadBMP("bonhomme2.bmp");
 	bombe=SDL_LoadBMP("bombe.bmp");
+	MAIN4=SDL_LoadBMP("MAIN4.bmp");
 	
 	/*Initialement, l'hélicoptère se trouve dans le coin gauche de la fenêtre*/
 	positionHelico.x= 100;
@@ -45,7 +46,7 @@ int main()
 	/*Tant que la simulation n'est pas finie, on met à jour l'interface graphique*/
     while (continuer && (tpsCourant<S.get_tpsSimulation() || S.getListElecteur1().size()!=0 || S.getListElecteur2().size()!=0))
 	{
-        tpsCourant=S.run(ecran,helico,couteau,bombe,votant1, votant2,positionHelico, event, continuer);
+        tpsCourant=S.run(ecran,helico,couteau,bombe,MAIN4,votant1, votant2,positionHelico, event, continuer);
     }
     
     /*Affichage des scores à la fin de la simulation*/
