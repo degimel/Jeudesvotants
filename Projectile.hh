@@ -10,8 +10,8 @@ class Projectile : public Figure{
 		/*Méthodes*/
 		Projectile(int abcisse, int ordonnee) : Figure(abcisse,ordonnee){};
 		virtual ~Projectile(){};
-		virtual bool verifieImpact(Electeur* electeur) const=0; //les impacts des bombes ne sont pas les mêmes que ceux des couteaux => fonction virtuelle
-		virtual SDL_Rect& update() = 0; //On ne met pas à jour le couteau et la bombe de la même manière => fonction virtuelle
+		virtual bool verifieImpact(Electeur* electeur) const=0; //les impacts des bombes ne sont pas les mêmes que ceux des couteaux ou que des MAIN4 => fonction virtuelle
+		virtual SDL_Rect& update() = 0; //On ne met pas à jour le couteau, la MAIN4 et la bombe de la même manière => fonction virtuelle
 		
 		/*Getter*/
 		int gety(){ return position.y;};

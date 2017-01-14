@@ -94,7 +94,9 @@ void Simu::gererEvenementsClavier(SDL_Event& event,int &continuer,SDL_Rect& posi
 				    }
 				    break;
 				    case SDLK_RIGHT:
-				        positionHelico.x+=10;
+				    	if(positionHelico.x<630){//L'hélicoptère ne sort pas de l'écran
+				        	positionHelico.x+=10;
+				        }
 				        break;
 				    case SDLK_LEFT:
 				        positionHelico.x-=10;

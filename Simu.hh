@@ -9,7 +9,7 @@
 
 /*Paramètres du jeu*/
 #define NBTOTALVOTANT1 40
-#define NBTOTALVOTANT2 55
+#define NBTOTALVOTANT2 60
 
 class Simu{
 	private :
