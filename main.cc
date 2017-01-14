@@ -1,14 +1,19 @@
-#include <SDL.h>
+#include <SDL.h> //Bibliothèque graphique
 #include <iostream>
+#include <ctime>
 #include "Bombe.hh"
 #include "Couteau.hh"
 #include "Joueur.hh"
 #include "Electeur.hh"
 #include "Simu.hh"
 
+
 using namespace std;
 int main()
 {
+	/*Réinitialisation de la graine*/
+	srand(time(NULL)); // initialisation de rand
+
 	/*Déclaration de l'écran et des images*/
 	SDL_Surface *ecran = NULL, *helico=NULL, *couteau=NULL, *votant1=NULL, *votant2=NULL, *bombe=NULL;
 	SDL_Rect positionHelico;

@@ -1,6 +1,5 @@
 #pragma once
 #include <iostream>
-#include <ctime>
 #include "Figure.hh"
 
 class Electeur : public Figure{
