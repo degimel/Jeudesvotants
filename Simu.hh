@@ -18,7 +18,7 @@ class Simu{
 		int cpt_vote_pour_2;
 		Joueur joueur1;//Le joueur qui joue est le joueur 1
 		Joueur joueur2;
-		std::vector<Projectile*> _listProjectiles; //à mettre à jour à chaque pas de temps
+		std::vector<Projectile*> _listProjectiles;
 		std::vector<Electeur> _listElecteur1; //votent pour 1
 		std::vector<Electeur> _listElecteur2; //votent pour 2
 		
