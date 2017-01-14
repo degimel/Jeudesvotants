@@ -1,7 +1,9 @@
 #pragma once
+#include <SDL.h>
+#include <iostream>
 #include <iostream>
 #include <vector>
-#include "screen.hh"
+
 
 class Figure{
 	protected :

@@ -10,6 +10,7 @@ class Electeur : public Figure{
 		~Electeur(){};
 		SDL_Rect update(){position.x++; return position;};//Mise à jour de la position de l'électeur
 		void initialise_tpsDepart(int tps_Simu);
+		
 		//Fonction renvoyant un booléen indiquant si l'electeur est arrivé tout à droite de l'écran
 		bool arrivee(int abcsissearrivee){ return position.x>=abcsissearrivee;};
 		
@@ -19,5 +20,3 @@ class Electeur : public Figure{
 	private :
 		int _tpsDepart;
 };
-
-

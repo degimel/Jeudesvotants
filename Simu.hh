@@ -8,7 +8,7 @@
 
 /*Paramètres du jeu*/
 #define NBTOTALVOTANT1 40
-#define NBTOTALVOTANT2 60
+#define NBTOTALVOTANT2 55
 
 class Simu{
 	private :
@@ -17,7 +17,7 @@ class Simu{
 		int cpt_vote_pour_1;
 		int cpt_vote_pour_2;
 		Joueur joueur1;//Le joueur qui joue est le joueur 1
-		Joueur joueur2;
+		Joueur joueur2;//L'opposant est le joueur 2
 		std::vector<Projectile*> _listProjectiles;
 		std::vector<Electeur> _listElecteur1; //votent pour 1
 		std::vector<Electeur> _listElecteur2; //votent pour 2
@@ -42,7 +42,4 @@ class Simu{
 		int get_tpsSimulation(){ return _tpsSimulation;};
 		std::vector<Electeur>& getListElecteur1(){return _listElecteur1;};
 		std::vector<Electeur>& getListElecteur2(){return _listElecteur2;};
-};		
-
-
-
+};

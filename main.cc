@@ -1,8 +1,9 @@
+#include <SDL.h>
+#include <iostream>
 #include "Bombe.hh"
 #include "Couteau.hh"
 #include "Joueur.hh"
 #include "Electeur.hh"
-#include "screen.hh"
 #include "Simu.hh"
 
 using namespace std;
@@ -39,7 +40,7 @@ int main()
 	/*Tant que la simulation n'est pas finie, on met à jour l'interface graphique*/
     while (continuer && (tpsCourant<S.get_tpsSimulation() || S.getListElecteur1().size()!=0 || S.getListElecteur2().size()!=0))
 	{
-        	tpsCourant=S.run(ecran,helico,couteau,bombe,votant1, votant2,positionHelico, event, continuer);
+        tpsCourant=S.run(ecran,helico,couteau,bombe,votant1, votant2,positionHelico, event, continuer);
     }
     
     /*Affichage des scores à la fin de la simulation*/
