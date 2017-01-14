@@ -4,6 +4,7 @@
 
 class Bombe : public Projectile{
 	public :
+		/*Méthodes*/
 		Bombe(int abcisse, int ordonnee):Projectile(abcisse,ordonnee){typeProjectile=2;};
 		~Bombe(){};
 		bool verifieImpact(Electeur* electeur) const;

@@ -21,6 +21,7 @@ class Simu{
 		std::vector<Projectile*> _listProjectiles; //à mettre à jour à chaque pas de temps
 		std::vector<Electeur> _listElecteur1; //votent pour 1
 		std::vector<Electeur> _listElecteur2; //votent pour 2
+		
 	public:
 		/*Méthodes*/
 		Simu(int tpsSimulation): _tpsSimulation(tpsSimulation){cpt_vote_pour_1=0; cpt_vote_pour_2=0;_tpsCourant=0;};
