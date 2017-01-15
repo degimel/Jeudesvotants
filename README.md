@@ -1,7 +1,11 @@
 # Jeudesvotants
 
+#Bibliothèque à installer
+Pour faire fonctionner la SDL (bibliothèque gaphique), installez le paquet libsdl1.2-dev, en tapant dans un terminal : 
+sudo apt-get install libsdl1.2-dev
+
 # Pour lancer le programme :
-Faites make à partir d'un terminale et faites ./main pour lancer le programme.
+Faites make à partir d'un terminal et faites ./main pour lancer le programme.
 
 Mettez côte à côte l'interface graphique qui s'ouvre ainsi que le terminale. C'est dans le terminale que les points vont s'afficher.
 
